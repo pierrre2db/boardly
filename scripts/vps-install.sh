@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # One-shot installer for Monday Clone on a VPS.
 # Run it directly on the server:
-#   curl -fsSL https://raw.githubusercontent.com/pierrre2db/monday-clone/main/scripts/vps-install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/pierrre2db/boardly/main/scripts/vps-install.sh | bash
 # Optional: choose the first admin email ->  ADMIN_EMAIL=you@example.com bash <(curl -fsSL .../vps-install.sh)
 set -euo pipefail
 
-REPO="https://github.com/pierrre2db/monday-clone.git"
+REPO="https://github.com/pierrre2db/boardly.git"
 ADMIN_EMAIL="${ADMIN_EMAIL:-pierre2db@gmail.com}"
 DIR="${DIR:-$HOME/monday-clone}"
 

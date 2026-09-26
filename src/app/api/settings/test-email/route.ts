@@ -14,8 +14,8 @@ export async function POST(req: Request) {
   try {
     await sendMail({
       to: admin.email,
-      subject: "Test — Monday Clone",
-      text: "Ceci est un email de test envoyé depuis Monday Clone. Votre configuration SMTP fonctionne.",
+      subject: "Test — Boardly",
+      text: "Ceci est un email de test envoyé depuis Boardly. Votre configuration SMTP fonctionne.",
     });
     return NextResponse.json({ ok: true, to: admin.email });
   } catch (err) {

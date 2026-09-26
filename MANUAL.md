@@ -1,4 +1,4 @@
-# Manuel du logiciel — Monday Clone
+# Manuel du logiciel — Boardly
 
 Application de gestion de travail auto-hébergeable, inspirée de Monday.com :
 tableaux (boards), colonnes typées, et vues Table / Kanban / Calendrier.
@@ -415,7 +415,7 @@ l'application (ex. `monentreprise.taches@gmail.com`). Avantages : les emails par
 
 ### Étape 2 — Créer le mot de passe d'application
 1. Allez sur **myaccount.google.com/apppasswords**.
-2. Donnez un nom (ex. « Monday Clone ») → **Créer**.
+2. Donnez un nom (ex. « Boardly ») → **Créer**.
 3. Google affiche **16 caractères** (ex. `abcd efgh ijkl mnop`). **Copiez-les** (sans les espaces).
    C'est ce mot de passe que vous mettrez dans l'application. (Il ne s'affichera plus après.)
 

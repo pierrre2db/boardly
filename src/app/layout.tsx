@@ -7,8 +7,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Monday Clone",
-  description: "Self-hosted work management — boards, typed columns, Table/Kanban/Calendar views.",
+  title: "Boardly",
+  description: "Boardly — gestion de tâches auto-hébergée : tableaux, Kanban, calendrier, suivi du temps.",
 };
 
 export const viewport: Viewport = {

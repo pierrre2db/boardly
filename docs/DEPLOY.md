@@ -1,6 +1,6 @@
 # Déploiement sur un VPS (derrière Nginx Proxy Manager)
 
-Guide pour héberger Monday Clone sur un serveur avec un reverse proxy **Nginx Proxy Manager (NPM)**
+Guide pour héberger Boardly sur un serveur avec un reverse proxy **Nginx Proxy Manager (NPM)**
 et un sous-domaine (ex. `project.dedobbeleer.online`). Postgres n'est jamais exposé publiquement ;
 l'app écoute sur le port `4000` (interne), NPM fait le HTTPS.
 
@@ -15,7 +15,7 @@ domaine complet). Vérifie : `dig +short project.tondomaine → <IP>`.
 ## 2. Déployer l'app
 ```bash
 ssh <user>@<IP-du-VPS>
-git clone https://github.com/pierrre2db/monday-clone.git
+git clone https://github.com/pierrre2db/boardly.git
 cd monday-clone
 cp .env.example .env
 # édite .env :

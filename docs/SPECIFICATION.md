@@ -1,4 +1,4 @@
-# Monday Clone — Living Specification
+# Boardly — Living Specification
 
 > **This is the maintained, current-state specification.** Update it whenever behavior,
 > data model, or architecture changes. Dated files under `docs/superpowers/specs/` and

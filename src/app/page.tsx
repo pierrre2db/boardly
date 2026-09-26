@@ -8,7 +8,7 @@ export default async function Home() {
   return (
     <div className="wrap">
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
-        <h1>Boards</h1>
+        <h1>◧ Boardly</h1>
         <Link href="/people" style={{ fontSize: 13, fontWeight: 600, color: "var(--text-muted)" }}>
           Focus personne →
         </Link>

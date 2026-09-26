@@ -20,7 +20,8 @@ export default function LoginPage() {
   return (
     <div className="login-wrap">
       <form onSubmit={submit} className="login-card">
-        <h1>Sign in</h1>
+        <h1 style={{ marginBottom: 2 }}>◧ Boardly</h1>
+        <p style={{ margin: "0 0 10px", color: "var(--text-muted)", fontSize: 14 }}>Connexion</p>
         <input
           type="email"
           value={email}

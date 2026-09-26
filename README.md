@@ -1,7 +1,8 @@
-# Monday Clone
+# Boardly
 
-A self-hosted, Docker-deployable work-management app inspired by Monday.com — boards with
-typed columns and **Table / Kanban / Calendar** views. Runs on a VPS or locally with one command.
+**Boardly** — a self-hosted, Docker-deployable work-management app: boards with typed columns and
+**Table / Kanban / Calendar** views. Runs on a VPS or locally with one command. (Inspired by
+Monday.com-style tools; Boardly is your own, no per-seat fees, your data on your server.)
 
 > Per-user accounts with roles (Admin / Member / Viewer) — no shared password. Ideal for a
 > trusted team behind HTTPS. See the [roadmap](#roadmap).
