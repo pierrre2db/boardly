@@ -396,6 +396,46 @@ textarea {
   z-index: 1;
 }
 
+/* Deadline tint for date cells: red = dépassé, orange = ≤7j, vert = large.
+   The inset left bar reads as a small colour bar behind the date. */
+.cell-deadline {
+  position: relative;
+  transition: background 0.12s;
+}
+.cell-deadline .cell-input--date {
+  background: transparent; /* let the cell tint show through the date input */
+}
+.cell-deadline--overdue {
+  background: rgba(231, 76, 107, 0.14);
+  box-shadow: inset 4px 0 0 var(--c-red);
+}
+.cell-deadline--soon {
+  background: rgba(253, 171, 61, 0.16);
+  box-shadow: inset 4px 0 0 var(--c-orange);
+}
+.cell-deadline--ok {
+  background: rgba(0, 200, 117, 0.13);
+  box-shadow: inset 4px 0 0 var(--c-green);
+}
+:root[data-theme="dark"] .cell-deadline--overdue,
+:root:not([data-theme="light"]) .cell-deadline--overdue {
+  background: rgba(231, 76, 107, 0.24);
+}
+:root[data-theme="dark"] .cell-deadline--soon,
+:root:not([data-theme="light"]) .cell-deadline--soon {
+  background: rgba(253, 171, 61, 0.24);
+}
+:root[data-theme="dark"] .cell-deadline--ok,
+:root:not([data-theme="light"]) .cell-deadline--ok {
+  background: rgba(0, 200, 117, 0.20);
+}
+/* Mobile stacked cards: the value chip carries the same tint + bar. */
+.mrow-value.cell-deadline {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
 .table-view thead th.sticky-col {
   background: var(--surface-2);
   z-index: 2;

@@ -4,6 +4,7 @@ import type { BoardFull, Column, Item, Member } from "./types";
 import { cellRegistry } from "./cells/registry";
 import { ReadOnlyCell } from "./cells/ReadOnlyCell";
 import ColumnSettings from "./ColumnSettings";
+import { deadlineStatus } from "./deadline";
 
 type Props = {
   board: BoardFull; members: Member[]; canEdit: boolean; isAdmin: boolean;
@@ -42,6 +43,14 @@ export default function TableView({
         onChange={(v) => saveCell(item.id, col.id, v)}
       />
     );
+  }
+
+  // Deadline tint for date columns: red overdue / orange ≤7d / green beyond.
+  function deadlineClass(item: Item, col: Column): string {
+    if (col.type !== "date") return "";
+    const cell = item.cells.find((c) => c.columnId === col.id);
+    const st = deadlineStatus((cell?.value.date as string) ?? null);
+    return st ? ` cell-deadline cell-deadline--${st}` : "";
   }
 
   return (
@@ -163,7 +172,7 @@ export default function TableView({
                         </div>
                       </td>
                       {board.columns.map((col) => (
-                        <td key={col.id}>{renderCellEditor(item, col)}</td>
+                        <td key={col.id} className={deadlineClass(item, col).trim()}>{renderCellEditor(item, col)}</td>
                       ))}
                     </tr>
                   ))}
@@ -218,7 +227,7 @@ export default function TableView({
                   {board.columns.map((col) => (
                     <div key={col.id} className="mrow">
                       <span className="k">{col.name}</span>
-                      <span className="mrow-value">{renderCellEditor(item, col)}</span>
+                      <span className={"mrow-value" + deadlineClass(item, col)}>{renderCellEditor(item, col)}</span>
                     </div>
                   ))}
                 </div>
