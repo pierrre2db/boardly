@@ -45,7 +45,7 @@ export async function createMember(input: {
 }): Promise<SafeMember> {
   const role = input.role ?? "member";
   assertRole(role);
-  const passwordHash = hashPassword(input.password);
+  const passwordHash = await hashPassword(input.password);
   try {
     return await prisma.member.create({
       data: {
@@ -78,7 +78,7 @@ export async function updateMember(
     updateData.email = trimmed;
   }
   if (password) {
-    updateData.passwordHash = hashPassword(password);
+    updateData.passwordHash = await hashPassword(password);
   }
   try {
     return await prisma.member.update({ where: { id }, data: updateData, select: SAFE_SELECT });

@@ -37,4 +37,11 @@ describe("validateCellValue", () => {
       .toEqual({ url: "https://x.com", label: "X" });
     expect(() => validateCellValue("link", {}, { url: "not a url" })).toThrow();
   });
+  it("link: rejects javascript: and data: schemes (stored XSS)", () => {
+    expect(() => validateCellValue("link", {}, { url: "javascript:alert(document.cookie)" })).toThrow();
+    expect(() => validateCellValue("link", {}, { url: "data:text/html,<script>alert(1)</script>" })).toThrow();
+    // mailto stays allowed
+    expect(validateCellValue("link", {}, { url: "mailto:a@b.com" }))
+      .toEqual({ url: "mailto:a@b.com", label: "mailto:a@b.com" });
+  });
 });

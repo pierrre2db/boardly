@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 import { addTime, listItemTime } from "@/db/time";
 import { requireAuth, requireMember, isResponse } from "@/lib/authz";
+import { readJson } from "@/lib/http";
 import { todayISO } from "@/lib/date";
 
 export async function POST(req: Request) {
   const s = await requireMember(req); if (isResponse(s)) return s;
-  const { itemId, minutes, date, note } = await req.json();
+  const body = await readJson(req); if (isResponse(body)) return body;
+  const { itemId, minutes, date, note } = body as { itemId: string; minutes: number; date?: string; note?: string };
   try {
     const entry = await addTime({
       itemId,

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { listMembers, createMember } from "@/db/members";
 import { requireAuth, requireAdmin, isResponse } from "@/lib/authz";
+import { readJson } from "@/lib/http";
 
 const COLORS = ["#00c875", "#fdab3d", "#e2445c", "#579bfc", "#a25ddc", "#ff642e"];
 
@@ -10,7 +11,10 @@ export async function GET(req: Request) {
 }
 export async function POST(req: Request) {
   const s = await requireAdmin(req); if (isResponse(s)) return s;
-  const { name, email, password, role, avatarColor } = await req.json();
+  const body = await readJson(req); if (isResponse(body)) return body;
+  const { name, email, password, role, avatarColor } = body as {
+    name?: string; email?: string; password?: string; role?: string; avatarColor?: string;
+  };
   if (!email || !password) {
     return NextResponse.json({ error: "email and password are required" }, { status: 400 });
   }

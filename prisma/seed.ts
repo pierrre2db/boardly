@@ -15,7 +15,7 @@ async function main() {
     data: {
       name: "Admin",
       email: "admin@example.com",
-      passwordHash: hashPassword(adminPassword),
+      passwordHash: await hashPassword(adminPassword),
       role: "admin",
       avatarColor: "#e2445c",
     },
@@ -24,7 +24,7 @@ async function main() {
     data: {
       name: "Alice",
       email: "alice@example.com",
-      passwordHash: hashPassword("alice"),
+      passwordHash: await hashPassword("alice"),
       role: "member",
       avatarColor: "#00c875",
     },
@@ -33,7 +33,7 @@ async function main() {
     data: {
       name: "Bob",
       email: "bob@example.com",
-      passwordHash: hashPassword("bob"),
+      passwordHash: await hashPassword("bob"),
       role: "viewer",
       avatarColor: "#579bfc",
     },

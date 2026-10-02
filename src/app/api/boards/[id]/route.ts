@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getBoardFull, deleteBoard, renameBoard } from "@/db/boards";
 import { requireAuth, requireAdmin, isResponse } from "@/lib/authz";
+import { readJson } from "@/lib/http";
 
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const s = await requireAuth(req); if (isResponse(s)) return s;
@@ -12,7 +13,8 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
 export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const s = await requireAdmin(req); if (isResponse(s)) return s;
   const { id } = await params;
-  const { name } = await req.json();
+  const body = await readJson(req); if (isResponse(body)) return body;
+  const { name } = body as { name: string };
   return NextResponse.json(await renameBoard(id, name));
 }
 export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {

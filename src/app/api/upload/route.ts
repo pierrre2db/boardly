@@ -27,7 +27,14 @@ export async function GET(req: Request) {
   try {
     await stat(path);
     const buf = await readFile(path);
-    return new NextResponse(new Uint8Array(buf), { headers: { "content-type": "application/octet-stream", "content-disposition": `inline; filename="${id}"` } });
+    return new NextResponse(new Uint8Array(buf), { headers: {
+      "content-type": "application/octet-stream",
+      "content-disposition": `inline; filename="${id}"`,
+      // Stop browsers MIME-sniffing an uploaded .html/.svg into executable
+      // content served from our own origin (stored XSS). Sandbox as belt-and-braces.
+      "x-content-type-options": "nosniff",
+      "content-security-policy": "default-src 'none'; sandbox",
+    } });
   } catch {
     return NextResponse.json({ error: "not found" }, { status: 404 });
   }

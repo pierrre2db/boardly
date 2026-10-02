@@ -46,7 +46,10 @@ export const validators: Record<ColumnType, (s: Settings, v: Value) => Value> = 
   },
   link: (_s, v) => {
     assert(typeof v.url === "string", "link requires url");
-    try { new URL(v.url as string); } catch { throw new Error("link url is invalid"); }
+    let parsed: URL;
+    try { parsed = new URL(v.url as string); } catch { throw new Error("link url is invalid"); }
+    // Allowlist safe schemes — blocks javascript:/data:/vbscript: stored-XSS payloads.
+    assert(["http:", "https:", "mailto:"].includes(parsed.protocol), "link url must be http(s) or mailto");
     return { url: v.url, label: typeof v.label === "string" ? v.label : (v.url as string) };
   },
   tags: (_s, v) => ({ tags: Array.isArray(v.tags) ? (v.tags as string[]).filter((t) => typeof t === "string") : [] }),
